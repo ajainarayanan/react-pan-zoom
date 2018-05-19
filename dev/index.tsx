@@ -2,10 +2,13 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import ReactPanZoom from "../src/react-pan-zoom";
 import styled, {injectGlobal, css} from "styled-components";
-import IconSVG from './components/IconSVG';
-import GlobalStyles from './global-styles';
+import IconSVG from "./components/IconSVG";
+import GlobalStyles from "./global-styles";
 
+/* tslint:disable:no-unused-expression */
 injectGlobal`${GlobalStyles}`;
+/* tslint:enable:no-unused-expression */
+
 const HEADER_HEIGHT = 50;
 const Container = css`
   height: calc(100vh - ${HEADER_HEIGHT}px);
@@ -43,33 +46,31 @@ const Heading = styled.div`
   display: flex;
   align-items: center;
   padding-left: 10px;
-  
-`
-
+`;
 
 export default class ReactPanZoomDemo extends React.PureComponent {
   public state = {
-    zoom: 1,
     dx: 397,
-    dy: -77
+    dy: -77,
+    zoom: 1,
   };
 
   private zoomIn = () => {
     this.setState({
-      zoom: this.state.zoom + 0.2
+      zoom: this.state.zoom + 0.2,
     });
   };
 
   private zoomOut = () => {
     this.setState({
-      zoom: this.state.zoom - 0.2
+      zoom: this.state.zoom - 0.2,
     });
   };
 
   private onPan = (dx, dy) => {
     this.setState({
       dx,
-      dy
+      dy,
     });
   };
 
@@ -82,7 +83,7 @@ export default class ReactPanZoomDemo extends React.PureComponent {
     );
   };
 
-  render() {
+  public render() {
     const StyledReactPanZoom = styled(ReactPanZoom)`${Container}`;
     return[
       <Heading key="heading"> React Pan and Zoom </Heading>,
@@ -94,7 +95,7 @@ export default class ReactPanZoomDemo extends React.PureComponent {
         onPan={this.onPan}
       >
         <img src="https://i.imgur.com/WJ17gs5.jpg" />
-      </StyledReactPanZoom>
+      </StyledReactPanZoom>,
     ];
   }
 }
