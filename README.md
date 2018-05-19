@@ -2,7 +2,8 @@
 
 A simple pan and zoom for canvas like elements in react.
 
-A demo can be found here - [React Pan Zoom]()
+## Demo
+[![Edit q8wl1joow9](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/q8wl1joow9)
 
 ## Installation
 
@@ -13,7 +14,7 @@ A demo can be found here - [React Pan Zoom]()
 ## Usage
 
 ```typescript
-import ReactPanZoom from "react-pan-zoom";
+import ReactPanZoom from "@ajainarayanan/react-pan-zoom";
 class MyComponent extends React.PureComponent {
 
   public render() {
