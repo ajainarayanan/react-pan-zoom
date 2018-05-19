@@ -21,8 +21,6 @@ export interface IReactPanZoomProps {
   width?: string;
   className?: string;
   zoom?: number;
-  panx?: number;
-  pany?: number;
   pandx?: number;
   pandy?: number;
   onPan?: (x: number, y: number) => void;
@@ -35,17 +33,15 @@ export default class ReactPanZoom extends React.PureComponent<IReactPanZoomProps
     onPan: () => undefined,
     pandx: 0,
     pandy: 0,
-    panx: 0,
-    pany: 0,
     zoom: 1,
   };
   private getInitialState = () => {
-    const {pandx, pandy, panx, pany, zoom} = this.props;
+    const {pandx, pandy, zoom} = this.props;
     const defaultDragData = {
       dx: pandx!,
       dy: pandy!,
-      x: panx!,
-      y: pany!,
+      x: 0,
+      y: 0,
     };
     return {
       dragData: defaultDragData,
