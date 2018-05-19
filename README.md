@@ -7,7 +7,7 @@ A demo can be found here - [React Pan Zoom]()
 ## Installation
 
 ```
-> yarn add react-pan-zoom
+> yarn add @ajainarayanan/react-pan-zoom
 ```
 
 ## Usage
