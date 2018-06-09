@@ -1,9 +1,9 @@
-import React from "react";
-import classnames from "classnames";
-import styled from "styled-components";
+import * as React from "react";
+import * as classnames from "classnames";
+import * as styled from "styled-components";
 import "../../../images/symbol-defs.svg";
 
-const IconWrapper = styled.svg`
+const IconWrapper = styled.default.svg`
   height: 1em;
   width: 1em;
   vertical-align: middle;

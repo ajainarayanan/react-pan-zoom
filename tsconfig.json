@@ -22,7 +22,8 @@
     "typeRoots": [
       // "./node_modules/jsplumb"
     ] /* List of folders to include type definitions from. */,
-    "types": [] /* Type declaration files to be included in compilation. */
+    "types": [] /* Type declaration files to be included in compilation. */,
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
     "test.ts",
