@@ -50,8 +50,8 @@ const Heading = styled.div`
 
 export default class ReactPanZoomDemo extends React.PureComponent {
   public state = {
-    dx: 397,
-    dy: -77,
+    dx: 0,
+    dy: 0,
     zoom: 1,
   };
 
@@ -77,8 +77,8 @@ export default class ReactPanZoomDemo extends React.PureComponent {
   public renderPanZoomControls = () => {
     return (
       <ControlsContainer>
-        <div onClick={this.zoomIn}><IconSVG name="icon-zoom-in" /></div>
-        <div onClick={this.zoomOut}><IconSVG name="icon-zoom-out" /></div>
+        <div data-cypress-id="zoom-in-btn" onClick={this.zoomIn}><IconSVG name="icon-zoom-in" /></div>
+        <div data-cypress-id="zoom-out-btn" onClick={this.zoomOut}><IconSVG name="icon-zoom-out" /></div>
       </ControlsContainer>
     );
   };
