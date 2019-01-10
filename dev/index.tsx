@@ -49,10 +49,27 @@ const Heading = styled.div`
 `;
 
 export default class ReactPanZoomDemo extends React.PureComponent {
+
+  constructor(props) {
+    super(props);
+
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if(e.which === 16) { // disable pan with shift
+        this.setState({ ...this.state, enablePan: false});
+      }
+    })
+    document.addEventListener('keyup', (e: KeyboardEvent) => {
+      if(e.which === 16) { // disable pan with shift
+        this.setState({ ...this.state, enablePan: true});
+      }
+    })
+  }
+
   public state = {
     dx: 0,
     dy: 0,
     zoom: 1,
+    enablePan: true,
   };
 
   private zoomIn = () => {
@@ -89,6 +106,7 @@ export default class ReactPanZoomDemo extends React.PureComponent {
       <Heading key="heading"> React Pan and Zoom </Heading>,
       this.renderPanZoomControls(),
       <StyledReactPanZoom
+        enablePan={this.state.enablePan}
         zoom={this.state.zoom}
         pandx={this.state.dx}
         pandy={this.state.dy}
