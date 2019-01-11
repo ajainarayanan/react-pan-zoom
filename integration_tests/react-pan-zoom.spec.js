@@ -33,4 +33,33 @@ describe("ReactPanZoom integration test.", () => {
         expect($el).to.have.css('transform', 'matrix(1, 0, 0, 1, 50, 50)');
       });
   })
+  describe("When shift key is pressed", () => {
+    it("Should not drag", () => {
+      cy.get('.pan-container > div')
+      .trigger('keydown', {which: 16, pageX: 0, pageY: 0});
+
+      cy.get('.pan-container > div')
+      .trigger('mousedown', {which: 1, pageX: 52, pageY: 52})
+      .trigger('mousemove', {which: 1, pageX: 100, pageY: 100})
+      .trigger('mouseup')
+      .should($el => {
+        expect($el).to.have.css('transform', 'matrix(1, 0, 0, 1, 50, 50)');
+      });
+    })
+  describe("When shift is released after pressing", () => {
+    it("Should drag", () => {
+      cy.get('.pan-container > div')
+      .trigger('keydown', {which: 16, pageX: 0, pageY: 0})
+      .trigger('keyup', {which: 16, pagex: 0, pagey: 0});
+
+      cy.get('.pan-container > div')
+      .trigger('mousedown', {which: 1, pageX: 52, pageY: 52})
+      .trigger('mousemove', {which: 1, pageX: 100, pageY: 100})
+      .trigger('mouseup')
+      .should($el => {
+        expect($el).to.have.css('transform', 'matrix(1, 0, 0, 1, 98, 98)');
+      });
+    })
+  })
+  })
 })

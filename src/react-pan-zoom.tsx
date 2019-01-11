@@ -20,6 +20,7 @@ export interface IReactPanZoomProps {
   height?: string;
   width?: string;
   className?: string;
+  enablePan?: boolean;
   zoom?: number;
   pandx?: number;
   pandy?: number;
@@ -30,13 +31,14 @@ export default class ReactPanZoom extends React.PureComponent<IReactPanZoomProps
   // :crossedfingers: it shouldn't be deprecated. Or the very least support defaultProps semantics as proposed
   // in this PR: https://github.com/Microsoft/TypeScript/issues/23812
   public static defaultProps: Partial<IReactPanZoomProps> = {
+    enablePan: true,
     onPan: () => undefined,
     pandx: 0,
     pandy: 0,
     zoom: 1,
   };
   private getInitialState = () => {
-    const {pandx, pandy, zoom} = this.props;
+    const { pandx, pandy, zoom } = this.props;
     const defaultDragData = {
       dx: pandx!,
       dy: pandy!,
@@ -58,6 +60,9 @@ export default class ReactPanZoom extends React.PureComponent<IReactPanZoomProps
   public state = this.getInitialState();
 
   private onMouseDown = (e: React.MouseEvent<EventTarget>) => {
+    if (!this.props.enablePan) {
+      return;
+    }
     const { matrixData, dragData } = this.state;
     const offsetX = matrixData[4];
     const offsetY = matrixData[5];
@@ -80,8 +85,8 @@ export default class ReactPanZoom extends React.PureComponent<IReactPanZoomProps
   };
 
   public componentWillReceiveProps(nextProps: IReactPanZoomProps) {
-    const {zoom} = nextProps;
-    const {matrixData} = this.state;
+    const { zoom } = nextProps;
+    const { matrixData } = this.state;
     if (matrixData[0] !== nextProps.zoom) {
       const newMatrixData = [...this.state.matrixData];
       newMatrixData[0] = nextProps.zoom || newMatrixData[0];
