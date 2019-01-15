@@ -1,16 +1,26 @@
 {
   "name": "@ajainarayanan/react-pan-zoom",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple wrapper for pan and zoom on html containers",
   "main": "dist/react-pan-zoom",
   "typings": "dist/react-pan-zoom.d.ts",
   "author": "ajainarayanan",
   "license": "MIT",
+  "repository": {
+    "type":"git",
+    "url": "https://github.com/ajainarayanan/react-pan-zoom.git"
+  },
+  "keywords": [
+    "html pan",
+    "html zoom",
+    "react pan zoom"
+  ],
   "scripts": {
     "start:dev": "webpack-dev-server",
     "lib:build": "webpack --config=webpack.config.lib.js",
     "test": "jest --watchAll --coverage",
-    "itest": "cypress open"
+    "itest": "cypress open",
+    "prepublishOnly": "npm run lib:build"
   },
   "devDependencies": {
     "@types/jest": "^23.0.0",
