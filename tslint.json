@@ -4,10 +4,23 @@
   "jsRules": {},
   "rules": {
     "arrow-parens": false,
+    "quotemark": [
+      false
+    ],
     "object-literal-key-quotes": [false],
     "member-ordering": false,
     "semicolon": [true, "always", "ignore-bound-class-methods"],
     "ordered-imports": false,
+    "prettier": [
+      true,
+      {
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "arrowParens": "always",
+        "semi": true,
+        "printWidth": 100
+      }
+    ],
     "trailing-comma": [
       true,
       {
