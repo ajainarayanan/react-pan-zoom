@@ -1,4 +1,3 @@
-
 export default `
   html, body {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
