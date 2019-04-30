@@ -1,3 +1,4 @@
+// @ts-nocheck
 describe("ReactPanZoom integration test.", () => {
   it("Should render the pan container", () => {
     cy.visit("http://localhost:9000");
@@ -32,9 +33,24 @@ describe("ReactPanZoom integration test.", () => {
       .should($el => {
         expect($el).to.have.css('transform', 'matrix(1, 0, 0, 1, 50, 50)');
       });
-  })
+  });
+  it('Should reset values back to default', () => {
+    cy.get('.pan-container > div')
+      .trigger('mousedown', { which: 1, pageX: 0, pageY: 0 })
+      .trigger('mousemove', { which: 1, pageX: 50, pageY: 50 })
+      .trigger('mouseup');
+    cy.get('[data-cypress-id="zoom-in-btn"]').click();
+    cy.get('[data-cypress-id="zoom-in-btn"]').click();
+    cy.get('[data-cypress-id="zoom-in-btn"]').click();
+    cy.get('[data-cypress-id="reset-btn"]').click();
+    cy.wait(1000);
+    cy.get('.pan-container > div').should(($el) => {
+      expect($el).to.have.css('transform', 'matrix(1, 0, 0, 1, 0, 0)');
+    });
+  });
   describe("When shift key is pressed", () => {
     it("Should not drag", () => {
+      cy.get('[data-cypress-id="reset-btn"]').click();
       cy.get('.pan-container > div')
       .trigger('keydown', {which: 16, pageX: 0, pageY: 0});
 
@@ -43,23 +59,24 @@ describe("ReactPanZoom integration test.", () => {
       .trigger('mousemove', {which: 1, pageX: 100, pageY: 100})
       .trigger('mouseup')
       .should($el => {
-        expect($el).to.have.css('transform', 'matrix(1, 0, 0, 1, 50, 50)');
+        expect($el).to.have.css('transform', 'matrix(1, 0, 0, 1, 0, 0)');
       });
-    })
-  describe("When shift is released after pressing", () => {
-    it("Should drag", () => {
-      cy.get('.pan-container > div')
-      .trigger('keydown', {which: 16, pageX: 0, pageY: 0})
-      .trigger('keyup', {which: 16, pagex: 0, pagey: 0});
+    });
+    describe("When shift is released after pressing", () => {
+      it("Should drag", () => {
+        cy.get('[data-cypress-id="reset-btn"]').click();
+        cy.get('.pan-container > div')
+        .trigger('keydown', {which: 16, pageX: 0, pageY: 0})
+        .trigger('keyup', {which: 16, pagex: 0, pagey: 0});
 
-      cy.get('.pan-container > div')
-      .trigger('mousedown', {which: 1, pageX: 52, pageY: 52})
-      .trigger('mousemove', {which: 1, pageX: 100, pageY: 100})
-      .trigger('mouseup')
-      .should($el => {
-        expect($el).to.have.css('transform', 'matrix(1, 0, 0, 1, 98, 98)');
+        cy.get('.pan-container > div')
+        .trigger('mousedown', {which: 1, pageX: 52, pageY: 52})
+        .trigger('mousemove', {which: 1, pageX: 100, pageY: 100})
+        .trigger('mouseup')
+        .should($el => {
+          expect($el).to.have.css('transform', 'matrix(1, 0, 0, 1, 48, 48)');
+        });
       });
-    })
-  })
-  })
-})
+    });
+  });
+});
