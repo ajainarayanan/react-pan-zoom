@@ -85,16 +85,22 @@ export default class ReactPanZoom extends React.PureComponent<IReactPanZoomProps
   };
 
   public componentWillReceiveProps(nextProps: IReactPanZoomProps) {
-    const { zoom } = nextProps;
     const { matrixData } = this.state;
-    if (matrixData[0] !== nextProps.zoom) {
-      const newMatrixData = [...this.state.matrixData];
-      newMatrixData[0] = nextProps.zoom || newMatrixData[0];
-      newMatrixData[3] = nextProps.zoom || newMatrixData[3];
-      this.setState({
-        matrixData: newMatrixData,
-      });
+    const { zoom = matrixData[0], pandx = matrixData[4], pandy = matrixData[5] } = nextProps;
+    const newMatrixData = [...this.state.matrixData];
+    if (matrixData[0] !== zoom) {
+      newMatrixData[0] = zoom || newMatrixData[0];
+      newMatrixData[3] = zoom || newMatrixData[3];
     }
+    if (matrixData[4] !== pandx) {
+      newMatrixData[4] = pandx;
+    }
+    if (matrixData[5] !== pandy) {
+      newMatrixData[5] = pandy;
+    }
+    this.setState({
+      matrixData: newMatrixData,
+    });
   }
 
   private onMouseUp = () => {
