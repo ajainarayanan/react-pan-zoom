@@ -1,6 +1,6 @@
 {
   "name": "@ajainarayanan/react-pan-zoom",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple wrapper for pan and zoom on html containers",
   "main": "dist/react-pan-zoom",
   "typings": "dist/react-pan-zoom.d.ts",
