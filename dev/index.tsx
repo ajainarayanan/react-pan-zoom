@@ -1,9 +1,9 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import ReactPanZoom from "../src/react-pan-zoom";
-import styled, {injectGlobal, css} from "styled-components";
-import IconSVG from "./components/IconSVG";
-import GlobalStyles from "./global-styles";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import ReactPanZoom from '../src/react-pan-zoom';
+import styled, { injectGlobal, css } from 'styled-components';
+import IconSVG from './components/IconSVG';
+import GlobalStyles from './global-styles';
 
 /* tslint:disable:no-unused-expression */
 injectGlobal`${GlobalStyles}`;
@@ -49,20 +49,21 @@ const Heading = styled.div`
 `;
 
 export default class ReactPanZoomDemo extends React.PureComponent {
-
   constructor(props) {
     super(props);
 
     document.addEventListener('keydown', (e: KeyboardEvent) => {
-      if(e.which === 16) { // disable pan with shift
-        this.setState({ ...this.state, enablePan: false});
+      if (e.which === 16) {
+        // disable pan with shift
+        this.setState({ ...this.state, enablePan: false });
       }
-    })
+    });
     document.addEventListener('keyup', (e: KeyboardEvent) => {
-      if(e.which === 16) { // disable pan with shift
-        this.setState({ ...this.state, enablePan: true});
+      if (e.which === 16) {
+        // disable pan with shift
+        this.setState({ ...this.state, enablePan: true });
       }
-    })
+    });
   }
 
   public state = {
@@ -91,18 +92,35 @@ export default class ReactPanZoomDemo extends React.PureComponent {
     });
   };
 
+  private onReset = () => {
+    this.setState({
+      dx: 0,
+      dy: 0,
+      zoom: 1,
+    });
+  };
+
   public renderPanZoomControls = () => {
     return (
       <ControlsContainer>
-        <div data-cypress-id="zoom-in-btn" onClick={this.zoomIn}><IconSVG name="icon-zoom-in" /></div>
-        <div data-cypress-id="zoom-out-btn" onClick={this.zoomOut}><IconSVG name="icon-zoom-out" /></div>
+        <div data-cypress-id="zoom-in-btn" onClick={this.zoomIn}>
+          <IconSVG name="icon-zoom-in" />
+        </div>
+        <div data-cypress-id="zoom-out-btn" onClick={this.zoomOut}>
+          <IconSVG name="icon-zoom-out" />
+        </div>
+        <div data-cypress-id="reset-btn" onClick={this.onReset}>
+          <IconSVG name="icon-hand-rock-o" />
+        </div>
       </ControlsContainer>
     );
   };
 
   public render() {
-    const StyledReactPanZoom = styled(ReactPanZoom)`${Container}`;
-    return[
+    const StyledReactPanZoom = styled(ReactPanZoom)`
+      ${Container};
+    `;
+    return [
       <Heading key="heading"> React Pan and Zoom </Heading>,
       this.renderPanZoomControls(),
       <StyledReactPanZoom
@@ -118,4 +136,4 @@ export default class ReactPanZoomDemo extends React.PureComponent {
   }
 }
 
-ReactDOM.render(<ReactPanZoomDemo />, document.getElementById("app-pan-and-zoom"));
+ReactDOM.render(<ReactPanZoomDemo />, document.getElementById('app-pan-and-zoom'));

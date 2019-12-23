@@ -1,7 +1,7 @@
-import * as React from "react";
-import * as classnames from "classnames";
-import * as styled from "styled-components";
-import "../../../images/symbol-defs.svg";
+import * as React from 'react';
+import * as classnames from 'classnames';
+import * as styled from 'styled-components';
+import '../../../images/symbol-defs.svg';
 
 const IconWrapper = styled.default.svg`
   height: 1em;
@@ -21,14 +21,11 @@ export interface IIconSVGProps {
 // Simple wrapper to render font icons as svgs.
 export default function IconSVG(props: IIconSVGProps) {
   const { name, className, ...moreProps } = props;
-  const iconClassName = classnames("icon-svg", name, className);
+  const iconClassName = classnames('icon-svg', name, className);
   const path = `${window.location.href}#symbol-defs_${name}`;
 
   return (
-    <IconWrapper
-      className={`${iconClassName}`}
-      {...moreProps}
-    >
+    <IconWrapper className={`${iconClassName}`} {...moreProps}>
       <use xlinkHref={path} />
     </IconWrapper>
   );

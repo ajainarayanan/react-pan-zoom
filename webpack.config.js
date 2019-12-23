@@ -65,7 +65,10 @@ module.exports = {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
-      tslint: true,
+      tsconfig: __dirname + '/tsconfig.json',
+      tslint: __dirname + '/tslint.json',
+      tslintAutoFix: true,
+      memoryLimit: 4096,
       watch: ["./src", "./test"], // optional but improves performance (less stat calls)
     }),
     new HtmlWebpackPlugin({
