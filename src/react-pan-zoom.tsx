@@ -24,7 +24,7 @@ export interface IReactPanZoomProps {
   zoom?: number;
   pandx?: number;
   pandy?: number;
-  onPan?: (x: number, y: number) => void;
+  onPan?: (x: number, y: number, event: React.MouseEvent<EventTarget>) => void;
 }
 export default class ReactPanZoom extends React.PureComponent<
   IReactPanZoomProps,
@@ -111,7 +111,7 @@ export default class ReactPanZoom extends React.PureComponent<
     });
   }
 
-  private onMouseUp = (event) => {
+  private onMouseUp = (event: React.MouseEvent<EventTarget>) => {
     this.setState({
       dragging: false,
     });
