@@ -118,7 +118,7 @@ export default class ReactPanZoom extends React.PureComponent<
     if (this.panWrapper) {
       this.panWrapper.style.cursor = '';
     }
-    if (this.props.onPan) {
+    if (this.props.onPan && this.props.enablePan) {
       this.props.onPan(this.state.matrixData[4], this.state.matrixData[5]);
     }
   };
