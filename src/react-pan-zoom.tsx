@@ -111,7 +111,7 @@ export default class ReactPanZoom extends React.PureComponent<
     });
   }
 
-  private onMouseUp = () => {
+  private onMouseUp = (event) => {
     this.setState({
       dragging: false,
     });
@@ -119,7 +119,7 @@ export default class ReactPanZoom extends React.PureComponent<
       this.panWrapper.style.cursor = '';
     }
     if (this.props.onPan && this.props.enablePan) {
-      this.props.onPan(this.state.matrixData[4], this.state.matrixData[5]);
+      this.props.onPan(this.state.matrixData[4], this.state.matrixData[5], event);
     }
   };
 
